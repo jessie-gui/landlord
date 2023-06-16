@@ -1,0 +1,106 @@
+.container {
+    height: 100%;
+    width: 100%;
+    background: beige;
+    position: absolute
+}
+.divPlay {
+    height:300px;
+    width:100%;
+    background: beige;
+    position: relative;
+    border:3px solid burlywood;
+}
+.divPlayer{
+    height: 100%;
+    width: 15%;
+    background: oldlace;
+    border:3px solid burlywood;
+    float: left;
+}
+.divNickName{
+    height: 100%;
+    width: 49%;
+    border:1px solid burlywood;
+    float: left;
+    text-align: center;
+}
+.divCharacter{
+    height: 100%;
+    width: 49%;
+    border:1px solid burlywood;
+    float: left;
+    text-align: center;
+}
+.divPlayerInfo{
+    height: 25%;
+    width: 100%;
+    border:1px solid burlywood;
+}
+.divPlayerMsg{
+    height: 20px;
+    width: 100%;
+    border:1px solid burlywood;
+    text-align: center;
+    overflow: hidden;
+}
+.divLoardCard{
+    height: 75%;
+    width: 100%;
+    border:1px solid burlywood;
+}
+.divPlayCards{
+    height: 100%;
+    width: 68%;
+    background: oldlace;
+    border:3px solid burlywood;
+    float: left;
+}
+.divCards {
+    height:250px;
+    width:100%;
+    background: beige;
+    position: relative;
+    overflow: auto;
+    border:3px solid burlywood;
+}
+.divCard {
+    align-self:center;
+    height: 100%;
+    width: 50px;
+    background:burlywood;
+    position: relative;
+    display: inline-block;
+    border:1px solid aqua;
+}
+.divNum {
+    height: 47%;
+    width: 100%;
+    position: relative;
+}
+.divColor{
+    height: 47%;
+    width: 100%;
+    align-self: center;
+    position: relative;
+}
+.chooseCard{
+    height: 6%;
+    width: 50%;
+    position: relative;
+    margin-left: 25%;
+    margin-right: 25%;
+    border: 1px solid aqua;
+}
+
+.chooseYes{
+    background-color: aqua;
+}
+
+.divButton {
+    height: 150px;
+    width: 100%;
+    background: beige;
+    position: relative;
+    border:3px solid burlywood;
+}
