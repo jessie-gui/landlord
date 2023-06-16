@@ -1,11 +1,11 @@
 package router
 
 import (
-	"github/jessie-gui/landlord/controller"
 	"html/template"
 	"io"
 
 	"github.com/labstack/echo/v4"
+	"github/jessie-gui/landlord/controller"
 )
 
 // Template /**

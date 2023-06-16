@@ -3,17 +3,17 @@ package core
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/camry/g/glog"
-	"github.com/gorilla/websocket"
-	"github.com/jessie-gui/x/xlog"
-	"github.com/jessie-gui/x/xserver/xwebsocket"
-	"github.com/tidwall/gjson"
-	"github/jessie-gui/landlord/consts"
 	"log"
 	"runtime/debug"
 	"sort"
 	"strconv"
 	"sync"
+
+	"github.com/gorilla/websocket"
+	"github.com/jessie-gui/x/xlog"
+	"github.com/jessie-gui/x/xserver/xwebsocket"
+	"github.com/tidwall/gjson"
+	"github/jessie-gui/landlord/consts"
 )
 
 // PlayerOption /**
@@ -203,7 +203,7 @@ func (p *player) HandlerMsg(wg *sync.WaitGroup, room *Table) {
 				//同桌用户交流，包含对话流程和出牌流程
 				p.ResolveMsg(msg, room)
 			case -1:
-				glog.Info("玩家：" + strconv.Itoa(p.Id) + "断开链接")
+				xlog.Info("玩家：" + strconv.Itoa(p.Id) + "断开链接")
 				break
 				//离开桌子流程，后续包含断线保持，自动出牌
 			default:

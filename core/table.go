@@ -2,13 +2,13 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/camry/g/glog"
-	"github.com/jessie-gui/x/xlog"
-	"github/jessie-gui/landlord/consts"
 	"math/rand"
 	"strconv"
 	"sync"
 	"time"
+
+	"github.com/jessie-gui/x/xlog"
+	"github/jessie-gui/landlord/consts"
 )
 
 // Table 桌子对象。
@@ -221,10 +221,10 @@ func (t *Table) BroadCastMsg(player *player, msgType int, hints string) {
 	}
 }
 
-// PlayCard 出牌
+// PlayCard 出牌。
 func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 	if len(t.Players[position].Card) <= 0 {
-		glog.Error("游戏已结束！")
+		xlog.Error("游戏已结束！")
 		return
 	}
 
@@ -234,7 +234,7 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 
 	// 没有轮到玩家出牌。
 	if lastCards.NextPosition != position {
-		glog.Error("还没轮到你出牌！")
+		xlog.Error("还没轮到你出牌！")
 		return
 	}
 
@@ -250,13 +250,13 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 	}
 
 	if len(cards) != hitNum {
-		glog.Error("跟牌错误，有未拥有的牌！")
+		xlog.Error("跟牌错误，有未拥有的牌！")
 		return
 	}
 
 	// 跟牌数量不匹配。
 	if len(lastCards.Cards) != 0 && len(lastCards.Cards) != len(cards) && len(cards) != 2 && len(cards) != 4 && lastCards.Position != position {
-		glog.Error("跟牌数量不匹配:%d-%d", len(lastCards.Cards), len(cards))
+		xlog.Error("跟牌数量不匹配:%d-%d", len(lastCards.Cards), len(cards))
 		return
 	}
 
@@ -266,7 +266,7 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 		nextPosition -= 3
 	}
 
-	// 构建出牌详情对象
+	// 构建出牌详情对象。
 	tempCard := TempCard{Position: position, NextPosition: nextPosition, Cards: cards, CardsIndex: cardsIndex}
 
 	switch len(cards) {
@@ -275,7 +275,7 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 			xlog.Error("跟牌错误:", lastCards.Cards[0].Rank, cards[0].Rank)
 			return
 		}
-	case 2: // 对子或王炸
+	case 2: // 对子或王炸。
 		if cards[0].Rank != cards[1].Rank && cards[0].Rank != 16 && cards[1].Rank != 17 && cards[0].Rank != 17 && cards[1].Rank != 16 {
 			xlog.Error("跟牌错误:", cards[0].Rank, cards[1].Rank)
 			return
@@ -292,7 +292,7 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 				return
 			}
 		}
-	case 3: // 三张
+	case 3: // 三张。
 		if cards[0].Rank != cards[1].Rank || cards[1].Rank != cards[2].Rank {
 			xlog.Error("跟牌错误:", cards[0].Rank, cards[1].Rank, cards[2].Rank)
 			return
@@ -302,7 +302,7 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 			xlog.Error("跟牌错误:", lastCards.Cards[0].Rank, cards[0].Rank)
 			return
 		}
-	case 4: // 炸弹
+	case 4: // 炸弹。
 		if cards[0].Rank != cards[1].Rank || cards[1].Rank != cards[2].Rank || cards[2].Rank != cards[3].Rank {
 			xlog.Error("跟牌错误:", cards[0].Rank, cards[1].Rank, cards[2].Rank, cards[3].Rank)
 			return
@@ -319,7 +319,7 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 		}
 
 		if IsStraight(cards) || IsStraightPair(cards) {
-			// 上一个出牌的不是自己
+			// 上一个出牌的不是自己。
 			if lastCards.Position != position {
 				if GetMaxCardRank(lastCards.Cards) >= GetMaxCardRank(cards) {
 					xlog.Error("跟牌错误:", GetMaxCardRank(cards), GetMaxCardRank(cards))
@@ -343,7 +343,7 @@ func (t *Table) PlayCard(position int, cards []*Card, cardsIndex []int) {
 
 	t.BroadCastMsg(t.Players[position], consts.MSG_TYPE_OF_PLAY_CARD, "玩家出牌")
 
-	// 下一个玩家准备出牌
+	// 下一个玩家准备出牌。
 	if len(t.Players[position].Card) > 0 {
 		t.Players[nextPosition].SendMsgToPlayer(t, consts.MSG_TYPE_OF_PLAY_CARD, "玩家准备出牌")
 	} else {
