@@ -13,13 +13,11 @@ WORKDIR /usr/local/landlord
 # 复制项目中的 go.mod 和 go.sum文件并下载依赖信息
 COPY go.mod .
 COPY go.sum .
+
 RUN go mod tidy
 
 # 将代码复制到容器中
 COPY . .
 
-# 构建应用
-RUN go build -o landlord landlord.go
 
-# 启动应用
-CMD ["./landlord"]
+# 构建容器:docker run -it -v /usr/local/landlord:/usr/local/landlord -v /etc/localtime:/etc/localtime -p 8080:8080 --cap-add SYS_TIME --name landlord landlord /bin/sh
