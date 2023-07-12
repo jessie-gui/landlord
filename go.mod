@@ -3,7 +3,6 @@ module github/jessie-gui/landlord
 go 1.18
 
 require (
-	github.com/camry/g v1.2.8
 	github.com/gorilla/websocket v1.5.0
 	github.com/jessie-gui/x v0.0.0-20230616014452-ee39ff55d8a3
 	github.com/labstack/echo/v4 v4.10.2
